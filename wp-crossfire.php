@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Crossfire
+Plugin Name: WP Crossfire
 Plugin URI: http://jumping-duck.com/wordpress.
 Description: Automatically cross-post new posts to other sites on the network.
 Version: 0.1
