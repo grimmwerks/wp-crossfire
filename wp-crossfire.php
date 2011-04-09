@@ -24,3 +24,19 @@ License: GPLv3+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+load_plugin_textdomain( 'wp-crossfire', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n/' );
+
+
+if ( version_compare(PHP_VERSION, '5.2', '<') ) {
+    deactivate_plugins(__FILE__);
+    wp_die( __('WP Crossfire requires PHP 5.2 or higher, it has now disabled itself.', 'wp-crossfire') );
+}
+
+// Define plugin-wide constants
+define( 'WPCROSSFIRE_URL', plugin_dir_url(__FILE__) );
+define( 'WPCROSSFIRE_PATH', plugin_dir_path(__FILE__) );
+define( 'WPCROSSFIRE_BASENAME', plugin_basename(__FILE__) );
+
+define( 'WPCROSSFIRE_VERSION', '0.1' );
+
+require_once('includes/class-admin.php');
