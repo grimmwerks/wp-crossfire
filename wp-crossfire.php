@@ -33,6 +33,11 @@ if ( version_compare(PHP_VERSION, '5.2', '<') ) {
     wp_die( __('WP Crossfire requires PHP 5.2 or higher, it has now disabled itself.', 'wp-crossfire') );
 }
 
+if ( ! is_multisite() ) {
+	deactivate_plugins(__FILE__);
+	wp_die( __('WP Crossfire only works in a multisite environment, it has now disabled itself.', 'wp-crossfire') );
+}
+
 // Define plugin-wide constants
 define( 'WPCROSSFIRE_URL', plugin_dir_url(__FILE__) );
 define( 'WPCROSSFIRE_PATH', plugin_dir_path(__FILE__) );
@@ -40,6 +45,5 @@ define( 'WPCROSSFIRE_BASENAME', plugin_basename(__FILE__) );
 
 define( 'WPCROSSFIRE_VERSION', '0.1' );
 
-// Register plugin frameworks an dependencies
-require_once('includes/class-wpframeworks.php');
-wp_register_framework('jdm-admin', WPCROSSFIRE_PATH . '/includes/class-admin.php', '', '0.1');
+include( WPCROSSFIRE_PATH . '/includes/functions.php' );
+include( WPCROSSFIRE_PATH . '/includes/admin.php' );
